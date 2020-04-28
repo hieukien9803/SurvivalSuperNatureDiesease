@@ -4,14 +4,19 @@ from Item import Item
 
 class World(object):
 
-    def __init__(self):
+    def __init__(self, food, drink):
+        self.__food = food
+        self.__drink = drink
         self.__player = []
         self.__drinks = []
-        self.read_drinks('drinks.txt')
+        self.read_drinks('drinks')
         self.__foods = []
-        self.read_foods('foods.txt')
+        self.read_foods('foods')
         self.__items = []
-        self.read_items('items.txt')
+        self.read_items('items')
+
+    def __str__(self):
+        pass
 
     def read_drinks(self, filename):
         """Read the available drinks from a file."""
