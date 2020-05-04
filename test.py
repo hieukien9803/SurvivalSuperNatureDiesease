@@ -4,6 +4,9 @@ from World import World
 from Item import Item
 from Player import Player
 
+
+
+
 def test():
     print('\n----product test----')
     food = Food('Bubble Tea', 'canFood', 13.50)

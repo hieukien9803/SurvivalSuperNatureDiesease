@@ -4,6 +4,7 @@ from World import World
 from Item import Item
 from Cecilia import Cecilia
 from Elizabeth import Elizabeth
+import toolbox
 
 class Game(object):
 
@@ -18,17 +19,17 @@ class Game(object):
         while command != 'quit':
             if command == 'help':
                 if self.__menu == 'main':
-                    self.help('help.txt', 'Press <return> to continue.')
+                    self.help('help', 'Press <return> to continue.')
                 elif self.__menu == 'more':
-                    self.help('help2.txt', 'Press <return> to continue.')
+                    self.help('help2', 'Press <return> to continue.')
             if command == 'more menu':
                 self.__menu = 'more'
             if command == 'back to main menu':
                 self.__menu = 'main'
             elif command == 'create player':
-                self.create_player(parameter)
+                self.create_player()
             elif command == 'create item':
-                self.create_item(parameter)
+                self.create_item()
             self.display()
             command, parameter = self.get_command()
         print('goodbye')
@@ -66,8 +67,23 @@ class Game(object):
         return command, parameter
 
     def create_player(self):
-        Cecilia.__str__()
-        Elizabeth.__str__()
+        print("""
+        1. Cecilia 
+        2. Elizabeth
+        """)
+        prompt = "Choose a character: "
+        player = toolbox.get_integer_between(1,2,prompt)
+
+        return player
+
+    def create_item(self):
+        self.display_item()
+        prompt = 'Choose your item to bring into your basement: '
+        item = toolbox.get_integer_between(1,6, prompt)
+
+    def display_item(self, displayTypes=None):
+        """Display all of the items"""
+        
 
     def status(self):
         """Returns a string representing the status of the world."""
@@ -93,9 +109,9 @@ class Game(object):
         :return: None
         """
         if self.__menu == 'main':
-            print(self.__world, self.status() + '\n' + self.menu())
+            print(self.status() + '\n' + self.menu())
         elif self.__menu == 'more':
-            print(self.__world, self.status() + '\n' + self.menu_more())
+            print(self.status() + '\n' + self.menu_more())
 
 
 if __name__ == '__main__':
