@@ -1,10 +1,9 @@
-from Drink import Drink
-from Food import Food
-from Item import Item
+import pygame
+from inventory import Drink, Food, Item
 
 class World(object):
 
-    def __init__(self, food, drink):
+    def __init__(self, food, drink, x, y):
         self.__food = food
         self.__drink = drink
         self.__player = []
@@ -14,6 +13,8 @@ class World(object):
         self.read_foods('foods')
         self.__items = []
         self.read_items('items')
+        self.__x = x
+        self.__y = y
 
     def __str__(self):
         pass
@@ -48,6 +49,20 @@ class World(object):
                 except TypeError:
                     print(f'{name} not added to inventory. Check {filename}.')
 
+    def display_image(self, image, win):
+        """
+        Display the images.
+        :param image: The image that need to display
+        :param win: The current screen of the game
+        :return: None
+        """
+        win.blit(image, (World.get_x, World.get_y))
+
+    def get_x(self):
+        return self.__x
+
+    def get_y(self):
+        return self.__y
 
 
 
