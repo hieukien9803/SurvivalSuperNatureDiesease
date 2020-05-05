@@ -11,13 +11,16 @@ pygame.init()
 # This is a small test for the button
 def drawWin():
     win.blit(menu_background, (0, 0))
-    win.blit(pizza, (100,100))
-    win.blit(coca, (200,200))
+    #win.blit(pizza, (100,100))
+    #win.blit(coca, (200,200))
     startButton.draw(win, (0, 0, 0))
     quitButton.draw(win, (0, 0, 0))
 
-
+########### Load background images
 menu_background = pygame.image.load('images/backgrounds/menu_background.png')
+menu_background = pygame.transform.scale(menu_background, (1200,700))
+game_background = pygame.image.load('images/backgrounds/game_background.png')
+game_background = pygame.transform.scale(game_background, (1200,1053))
 
 ############################### Load food images
 pizza = pygame.image.load('images/foods/pizza.png')
@@ -81,14 +84,14 @@ phone = pygame.transform.scale(phone, (120,110))
 ####### MAIN GAME ###########
 
 
-pygame.display.set_caption("Super Nature Disease")
-winWidth = 1700
-winHeight = 900
+pygame.display.set_caption("Epidemic")
+winWidth = 1200
+winHeight = 700
 win = pygame.display.set_mode((winWidth, winHeight))
 
 run = True
-startButton = button((0, 255, 255), 700, 500, 300, 100, "Start")
-quitButton = button((0, 255, 255), 700, 620, 300, 60, "Quit")
+startButton = button((0, 255, 255), 450, 400, 300, 100, "Start")
+quitButton = button((0, 255, 255), 450, 520, 300, 60, "Quit")
 #winsound.PlaySound("gameMusic", winsound.SND_FILENAME)
 while run:
     drawWin()
