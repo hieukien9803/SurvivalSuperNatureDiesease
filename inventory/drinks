@@ -1,7 +1,7 @@
-Coca Cola, soda, 1.5
-Water Bottle, water, 1
-Coffee, water, 2
-Milk Tea, water, 3
-Beer, liquor, 3
-Milk, water, 2
-Wine, liquor, 4
+Coca Cola, soda, 1.5, 3
+Water Bottle, water, 1, 3
+Coffee, water, 2, 1
+Milk Tea, water, 3, 0
+Beer, liquor, 3, 0
+Milk, water, 2, 3
+Wine, liquor, 4, 0

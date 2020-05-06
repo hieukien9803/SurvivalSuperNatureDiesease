@@ -1,6 +1,6 @@
-Pizza, fastFood, 0.8
-Sushi, seafood, 4
-Tuna Can, canFood, 2
-Ham, meat, 1.3
-Burger, fastFood, 1.5
-Banana, fruit, 2
+Pizza, fastFood, 0.8, 3
+Sushi, seafood, 4, 0
+Tuna Can, canFood, 2, 5
+Ham, meat, 1.3, 1
+Burger, fastFood, 1.5, 0
+Banana, fruit, 2, 3
