@@ -34,5 +34,4 @@ class Player(object):
     def play(self):
         return self.__happiness + 1
 
-    def health(self):
-        pass
+

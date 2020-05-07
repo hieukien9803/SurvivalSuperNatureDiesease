@@ -1,17 +1,31 @@
 import winsound
 
-class Sound(object):
 
-    def play_sound(self, soundFile):
-        """Plays a wav file."""
-        winsound.PlaySound(soundFile, winsound.SND_ASNC)
+def play_sound(soundFile):
+    """Plays a wav file."""
+    winsound.PlaySound(soundFile, winsound.SND_FILENAME)
 
 
-    def test_sound(self):
-        """Check to see if the sound file works."""
-        #
-        # The sound files should be in a subfolder right below where your
-        # program is. They have to be WAV files and end in .wav"
-        #
-        soundFile = './sounds/sound.wav'
-        Sound.play_sound(soundFile)
+def rain_sound():
+    soundFile = 'user_interface/sounds/rain.wav'
+    play_sound(soundFile)
+
+
+def night_sound():
+    soundFile = 'user_interface/sounds/night.wav'
+    play_sound(soundFile)
+
+
+def noon_sound():
+    soundFile = 'user_interface/sounds/noon.wav'
+    play_sound(soundFile)
+
+
+def button_sound():
+    soundFile = 'user_interface/sounds/button.wav'
+    play_sound(soundFile)
+
+
+def page_sound():
+    soundFile = 'user_interface/sounds/page_flip.wav'
+    play_sound(soundFile)

@@ -1,5 +1,8 @@
 import pygame
+from user_interface import sound
+
 pygame.init()
+
 
 class button():
     def __init__(self, color, x, y, width, height, text=''):
@@ -9,6 +12,7 @@ class button():
         self.width = width
         self.height = height
         self.text = text
+        self.sound = pygame.mixer.Sound('user_interface/sounds/button.wav')
 
     def draw(self, win, outline=None):
         """Draw a button with a text"""
@@ -26,11 +30,18 @@ class button():
 
     def isOver(self, position):
         # This function will check if the mouse is on top of the button
+
         if position[0] > self.x and position[0] < self.x + self.width:
             if position[1] > self.y and position[1] < self.y + self.height:
                 return True
 
         return False
 
-
-
+    def button_change_color(self, position):
+        """Change the color when the mouse is in the button's position"""
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEMOTION:
+                if button.isOver(self, position):
+                    button.color = (255, 0, 0)
+                else:
+                    button.color = 0, 255, 255

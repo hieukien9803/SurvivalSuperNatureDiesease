@@ -15,3 +15,4 @@ class Item(object):
         return self.__amount
 
     name = property(get_name)
+    amount = property(get_amount)
