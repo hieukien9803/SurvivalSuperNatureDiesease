@@ -1,18 +1,7 @@
-
 class Item(object):
 
-    def __init__(self, name, amount):
-        self.__name = str(name).strip()
-        self.__amount = amount
+    def __init__(self):
+        self.__item = []
 
-    def __str__(self):
-        return f'{self.name}'
-
-    def get_name(self):
-        return self.__name
-
-    def get_amount(self):
-        return self.__amount
-
-    name = property(get_name)
-    amount = property(get_amount)
+    def append(self, item):
+        return self.__item.append(item)

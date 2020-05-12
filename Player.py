@@ -1,17 +1,14 @@
-
 class Player(object):
 
-    def __init__(self, thirst, hunger, happiness, health):
+    def __init__(self, thirst, hunger, happiness):
         self.__thirst = thirst
         self.__hunger = hunger
         self.__happiness = happiness
-        self.__health = health
 
     def __str__(self):
-        return f'thrist point: {self.__thirst}' \
-               f'\nhunger point: {self.__hunger}' \
-               f'\nhappiness point: {self.__happiness}' \
-               f'\nhealth point: {self.__health}'
+        return (f'thrist point: {self.__thirst}'
+                f'\nhunger point: {self.__hunger}'
+                f'\nhappiness point: {self.__happiness}')
 
     def get_happiness(self):
         return self.__happiness
@@ -22,16 +19,26 @@ class Player(object):
     def get_hunger(self):
         return self.__hunger
 
-    def get_health(self):
-        return self.__health
+    def hungry(self):
+        self.__hunger = self.__hunger - 1
+        return self.__hunger
+
+    def thirsty(self):
+        self.__thirst = self.__thirst - 1
+        return self.__thirst
+
+    def bored(self):
+        self.__happiness = self.__happiness - 1
+        return self.__happiness
 
     def eat(self):
-        return self.__hunger + 1
+        self.__hunger = self.__hunger + 1
+        return self.__hunger
 
     def drink(self):
-        return self.__thirst + 1
+        self.__thirst = self.__thirst + 1
+        return self.__thirst
 
     def play(self):
+        self.__happiness = self.__happiness + 1
         return self.__happiness + 1
-
-

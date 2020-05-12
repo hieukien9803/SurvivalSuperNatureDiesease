@@ -1,10 +1,10 @@
 from Player import Player
 
 
-class Elizabeth(Player):
+class Mizuki(Player):
 
-    def __init__(self, thirst=10, hunger=10, happiness=10, health=10):
-        super().__init__(thirst, hunger, happiness, health)
+    def __init__(self, thirst, hunger, happiness):
+        super().__init__(thirst, hunger, happiness)
 
     # Special skill: Don't have to eat for 4 days
 
