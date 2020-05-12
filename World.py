@@ -1,16 +1,15 @@
 class World(object):
 
     def __init__(self):
-        self.__day = 3
-        self.__scenario = 3
-
-    def __str__(self):
-        return self.__day
+        self.__day = 0
+        self.__scenario = 0
 
     def get_day(self):
+        """Return the current day"""
         return self.__day
 
     def get_scenario(self):
+        """Return the current scenario"""
         return self.__scenario
 
     def next_scenario(self):

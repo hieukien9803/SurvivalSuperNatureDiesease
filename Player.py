@@ -6,6 +6,7 @@ class Player(object):
         self.__happiness = happiness
 
     def __str__(self):
+        """Return a string as the current point of the player"""
         return (f'thrist point: {self.__thirst}'
                 f'\nhunger point: {self.__hunger}'
                 f'\nhappiness point: {self.__happiness}')

@@ -47,13 +47,11 @@ text3 = pygame.image.load('images/backgrounds/character_background/text3.png')
 text3 = pygame.transform.scale(text3, (250, 100))
 text4 = pygame.image.load('images/backgrounds/character_background/text4.png')
 text4 = pygame.transform.scale(text4, (260, 120))
-
 # Load item background images and set a size for them
 item_background = pygame.image.load('images/backgrounds/item_background/item_background.png')
 item_background = pygame.transform.scale(item_background, (1200, 1053))
 text5 = pygame.image.load('images/backgrounds/item_background/text5.png')
 text5 = pygame.transform.scale(text5, (250, 420))
-
 # Load day background images and set a size for them
 day1 = pygame.image.load('images/backgrounds/day/day1.png')
 day1 = pygame.transform.scale(day1, (1200, 800))
@@ -77,7 +75,6 @@ day10 = pygame.image.load('images/backgrounds/day/day10.png')
 day10 = pygame.transform.scale(day10, (1200, 800))
 day11 = pygame.image.load('images/backgrounds/day/day11.png')
 day11 = pygame.transform.scale(day11, (1200, 800))
-
 # Load scenario images
 scenario1 = pygame.image.load('images/backgrounds/scenarios/scenario1.png')
 scenario2 = pygame.image.load('images/backgrounds/scenarios/scenario2.png')
@@ -90,7 +87,6 @@ scenario8 = pygame.image.load('images/backgrounds/scenarios/scenario8.png')
 scenario9 = pygame.image.load('images/backgrounds/scenarios/scenario9.png')
 scenario10 = pygame.image.load('images/backgrounds/scenarios/scenario10.png')
 scenario11 = pygame.image.load('images/backgrounds/scenarios/scenario11.png')
-
 # Load scenario's results images
 scenario1end = pygame.image.load('images/backgrounds/scenarios/scenario1end.png')  # Dead
 scenario1sur = pygame.image.load('images/backgrounds/scenarios/scenario1sur.png')  # Nothing
@@ -117,7 +113,6 @@ scenario11option1 = pygame.image.load('images/backgrounds/scenarios/scenario11op
 scenario11option2 = pygame.image.load('images/backgrounds/scenarios/scenario11option2.png')
 scenario11option3 = pygame.image.load('images/backgrounds/scenarios/scenario11option3.png')
 scenario11option4 = pygame.image.load('images/backgrounds/scenarios/scenario11option4.png')
-
 # Load character images and set a size for them
 mizuki = pygame.image.load('images/character/mizuki.png')
 mizuki = pygame.transform.scale(mizuki, (200, 300))
@@ -129,7 +124,6 @@ ying = pygame.image.load('images/character/chingchong.png')
 ying = pygame.transform.scale(ying, (300, 300))
 skeleton = pygame.image.load('images/character/skeleton.png')
 skeleton = pygame.transform.scale(skeleton, (200, 300))
-
 # Load foods images and set a size for them
 pizza = pygame.image.load('images/foods/pizza.png')
 pizza = pygame.transform.scale(pizza, (120, 110))
@@ -143,7 +137,6 @@ sushi = pygame.image.load('images/foods/sushi.png')
 sushi = pygame.transform.scale(sushi, (120, 110))
 tuna = pygame.image.load('images/foods/tuna_can.png')
 tuna = pygame.transform.scale(tuna, (120, 110))
-
 # Load drinks images and set a size for them
 beer = pygame.image.load('images/drinks/beer.png')
 beer = pygame.transform.scale(beer, (120, 110))
@@ -159,7 +152,6 @@ water = pygame.image.load('images/drinks/water.png')
 water = pygame.transform.scale(water, (120, 110))
 wine = pygame.image.load('images/drinks/wine.png')
 wine = pygame.transform.scale(wine, (120, 110))
-
 # Load items images and set a size for them
 computer = pygame.image.load('images/items/computer.png')
 computer = pygame.transform.scale(computer, (160, 150))
@@ -169,7 +161,6 @@ mask = pygame.image.load('images/items/mask.png')
 mask = pygame.transform.scale(mask, (100, 100))
 musket = pygame.image.load('images/items/musket.png')
 musket = pygame.transform.scale(musket, (130, 120))
-
 # Create a window
 winWidth = 1200
 winHeight = 700
@@ -228,22 +219,22 @@ class Game(object):
         self.__world = World()
         self.__menu = 'main'
         # Character
-        self.__ying = Ying(5, 5, 5)
-        self.__taylor = Taylor(5, 5, 5)
-        self.__mizuki = Mizuki(5, 5, 5)
-        self.__cecilia = Cecilia(7, 7, 6)
+        self.__ying = Ying(5, 6, 5)
+        self.__taylor = Taylor(6, 6, 5)
+        self.__mizuki = Mizuki(7, 7, 4)
+        self.__cecilia = Cecilia(5, 5, 6)
         self.__skeleton = Skeleton(0, 0, 0)
         self.__character = None
         self.__boolean = None
         # Food and drink to start
         self.__foods = 4
-        self.__drinks = 4
+        self.__drinks = 5
         # Inventory
         self.__musket = 0
         self.__firstAid = 0
         self.__computer = 0
         self.__gas = 0
-
+        # Value for running the game
         self.__time = 0
         self.__exist = False
         self.__isNumber2 = None
@@ -372,13 +363,12 @@ class Game(object):
                         self.__character.thirsty()
                         self.__character.bored()
                         print(self.__character.__str__())
-
                         self.status()
-
                         stages = "game"
                         self.drawWin(stages)
                     if takeButton.isOver(mousePos) and stages == "game":
                         if self.__special:
+                            sound.button_sound()
                             if self.__world.get_scenario() == 6 and self.__time > 0:
                                 self.__foods = self.__foods + 2
                                 self.__drinks = self.__drinks + 2
@@ -549,7 +539,7 @@ class Game(object):
                             sound.button_sound()
                             print("You have no mask")
 
-                # User interface for button
+                # Change the color of the button if the mouse position is over the button
                 if event.type == pygame.MOUSEMOTION:
                     if startButton.isOver(mousePos) and stages == "menu":
                         startButton.color = (255, 0, 0)
@@ -702,7 +692,7 @@ class Game(object):
                         takeButton.color = (250, 128, 114)
 
     def status(self):
-        """Return a string representing the status of the world"""
+        """Print our a string representing the status of the world"""
         day = self.__world.get_day()
         scenario = self.__world.get_scenario()
         string = 'Status:   '
@@ -716,20 +706,19 @@ class Game(object):
         :param stages: the current window
         :return: None
         """
+        # Draw the menu window
         if stages == 'menu':
             win.blit(menu_background, (0, 0))
             startButton.draw(win, (0, 0, 0))
             quitButton.draw(win, (0, 0, 0))
             helpButton.draw(win, (0, 0, 0))
-
+        # Draw the choosing character window
         elif stages == "character":
             win.blit(character_background, (0, 0))
-
             win.blit(text1, (60, 170))
             win.blit(text2, (350, 170))
             win.blit(text3, (630, 170))
             win.blit(text4, (900, 170))
-
             win.blit(cecilia, (970, 320))
             win.blit(taylor, (330, 270))
             win.blit(mizuki, (700, 320))
@@ -738,7 +727,7 @@ class Game(object):
             button2.draw(win, (0, 0, 0))
             button3.draw(win, (0, 0, 0))
             button4.draw(win, (0, 0, 0))
-
+        # Draw the choosing item window
         elif stages == "item":
             win.blit(item_background, (0, 0))
             win.blit(musket, (600, 100))
@@ -750,13 +739,13 @@ class Game(object):
             button6.draw(win, (0, 0, 0))
             button7.draw(win, (0, 0, 0))
             button8.draw(win, (0, 0, 0))
-
+        # Draw the game window
         elif stages == "game":
             if not self.__electricity:
                 win.blit(game_background_rain, (0, 0))
             else:
                 win.blit(game_background, (0, 0))
-
+            # Draw the foods and drinks available
             for i in range(self.__computer):
                 win.blit(computer, (120 + (i * 158), 280))
             for i in range(self.__musket):
@@ -765,17 +754,16 @@ class Game(object):
                 win.blit(mask, (180 + (i * 80), 480))
             for i in range(self.__firstAid):
                 win.blit(first_aid, (700 + (i * 100), 570))
-
+            # The status bar for hunger, thirst, and happiness
             win.blit(bar, (5, 5))
-
+            # Draw the foods and drinks available
             if self.__foods > 0:
                 for i in range(self.__foods):
                     win.blit(burger, (115 + (i * 40), 387))
-
             if self.__drinks > 0:
                 for i in range(self.__drinks):
                     win.blit(coca, (790 + (i * 30), 240))
-
+            # Draw the hunger point, thirst point, and happiness point
             if self.__character.get_hunger() > 0:
                 for i in range(self.__character.get_hunger()):
                     win.blit(drumStick, (90 + (i * 50), 15))
@@ -793,7 +781,7 @@ class Game(object):
                     win.blit(smile, (150 + (i * 50), 151))
             elif self.__character.get_happiness() == 0:
                 self.__character = self.__skeleton
-
+            # Draw the character
             if self.__character == self.__ying:
                 win.blit(ying, (430, 130))
             if self.__character == self.__taylor:
@@ -804,6 +792,7 @@ class Game(object):
                 win.blit(cecilia, (500, 220))
             if self.__character == self.__skeleton:
                 win.blit(skeleton, (480, 220))
+            # Draw the button
             button9.draw(win, (0, 0, 0))
             button10.draw(win, (0, 0, 0))
             button11.draw(win, (0, 0, 0))
@@ -814,7 +803,7 @@ class Game(object):
             maskButton.draw(win, (0, 0, 0))
             musketButton.draw(win, (0, 0, 0))
             takeButton.draw(win, (0, 0, 0))
-
+        # Draw the scenario
         elif stages == "scenario":
             if self.__world.get_scenario() == 1:
                 win.blit(scenario1, (300, 1))
@@ -863,7 +852,7 @@ class Game(object):
                 Button2.draw(win, (0, 0, 0))
                 Button3.draw(win, (0, 0, 0))
                 Button4.draw(win, (0, 0, 0))
-
+        # Draw the status day
         elif stages == "nextDay":
             if self.__world.get_day() == 0:
                 win.blit(day1, (0, 0))
@@ -888,8 +877,9 @@ class Game(object):
             elif self.__world.get_day() == 10:
                 win.blit(day11, (0, 0))
             self.__exist = False
+            # Draw the button
             nextButton.draw(win, (0, 0, 0))
-
+        # Draw the End Result for the scenario
         elif stages == "endResult":
             """Displaying the end result of the scenario"""
             # Scenario 1
@@ -948,7 +938,7 @@ class Game(object):
                 win.blit(scenario11option3, (300, 1))
             if self.__world.get_scenario() == 12:
                 win.blit(scenario11option4, (300, 1))
-
+        # Draw the Survived Result for the scenario
         elif stages == "surResult":
             """Displaying the survive result of the scenario"""
             if self.__world.get_scenario() == 2:
@@ -972,18 +962,19 @@ class Game(object):
                 win.blit(scenario9end, (300, 1))
             if self.__world.get_scenario() == 11:
                 win.blit(scenario10sur, (300, 1))
-
+        # Draw help window
         elif stages == "help":
             win.blit(help, (300, 40))
             backButton2.draw(win, (0, 0, 0))
-
+        # Draw the end window
         elif stages == "theEnd":
             win.blit(the_end, (270, 5))
             theEnd.draw(win, (0, 0, 0))
-
+        # Update the display
         pygame.display.update()
 
 
+# Run the main game
 if __name__ == '__main__':
     game = Game()
     game.main()
